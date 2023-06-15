@@ -4,7 +4,6 @@ import aiohttp
 import requests
 from datetime import datetime, timedelta
 import pytz
-import json
 
 # Set your keys
 PUSHOVER_API_TOKEN = 'ahh57yeodyhx13vr8mi13xvct51u4u'
@@ -26,12 +25,18 @@ async def fetch(session, url):
 
 async def main():
     while True:
+        now = datetime.now(local_tz)
+
+        # Code should work only from 11am to 11pm Kyiv time
+        if now.hour < 11 or now.hour >= 23:
+            await asyncio.sleep(60)
+            continue
+
         async with aiohttp.ClientSession() as session:
             tasks = []
             for index, row in df.iterrows():
-                # Skip this stock if it has already triggered a notification and it's not yet 3 PM
-                now = datetime.now(local_tz)
-                if row[0] in notified_stocks and now.hour < 15:
+                # Skip this stock if it has already triggered a notification and it's not yet 12 hours past
+                if row[0] in notified_stocks and (now - notified_stocks[row[0]]).total_seconds() < 12*3600:
                     continue
 
                 # Get yesterday's date for each stock
