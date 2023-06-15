@@ -7,8 +7,8 @@ import pytz
 import json
 
 # Set your keys
-PUSHOVER_API_TOKEN = 'acg5853su4nifrj3gaajdu7f4e7th9'
-PUSHOVER_USER_KEY = 'uwnwuhg5g21imwm1g4vy81fir3r86a'
+PUSHOVER_API_TOKEN = 'ahh57yeodyhx13vr8mi13xvct51u4u'
+PUSHOVER_USER_KEY = 'udnz28vppx6otfciwqu3qj2duaaoz6'
 POLYGON_API_KEY = '_iKZHMntetVbmPXjkf3aSyKuN1FIpUpn'
 
 # Set your timezone
